@@ -14,4 +14,11 @@ def index(request):
     return render(request,'food/index.html',context) 
 
 def item(request): 
-    return HttpResponse("This is an item view.")
+    return HttpResponse("This is an item view.") 
+
+def detail(request,item_id):  
+    item = Item.objects.get(pk=item_id) 
+    context = { 
+        'item':item,
+    }
+    return render(request,'food/detail.html',context)
