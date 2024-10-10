@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path , include
 from users import views as user_views 
 from django.contrib.auth import views as authentications_views 
+from django.conf.urls.static import static 
+from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls), 
@@ -29,5 +31,5 @@ urlpatterns = [
     path('profile/', user_views.profilepage, name='profile'), 
  
 
-]
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
