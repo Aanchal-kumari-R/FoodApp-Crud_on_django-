@@ -2,7 +2,9 @@ from django.shortcuts import render ,redirect
 from django.http import HttpResponse 
 from .models import Item 
 from django.template import loader 
-from .forms import ItemForm 
+from .forms import ItemForm  
+from django.views.generic.list import ListView 
+from django.views.generic.detail import DetailView
 
 # Create your views here.  
 
@@ -15,8 +17,14 @@ def index(request):
     return render(request,'food/index.html',context) 
 
 def item(request): 
-    return HttpResponse("This is an item view.") 
+    return HttpResponse("This is an item view.")  
 
+# class based detail view
+class FoodDetail(DetailView): 
+    model = Item 
+    template_name = 'food/detail.html' 
+
+# function based detail view
 def detail(request,item_id):  
     item = Item.objects.get(pk=item_id) 
     context = { 
