@@ -1,5 +1,6 @@
 from django.db import models 
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User  
+from django.urls import reverse
 
 # Create your models here.
 
@@ -14,3 +15,5 @@ class Item(models.Model):
     item_price = models.IntegerField()   
     item_image = models.CharField(max_length=500,default="https://www.dirtyapronrecipes.com/wp-content/uploads/2015/10/food-placeholder.png")
     
+    def get_absolute_url(self): 
+        return reverse("food:detail",kwargs={"pk":self.pk})
